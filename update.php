@@ -1,3 +1,17 @@
+<?php
+	include_once 'connect.php';
+
+    $id = $_GET['id'];
+    $result = mysqli_query($db, "SELECT * FROM city WHERE id =$id");
+
+    while($data_edit = mysqli_fetch_array($result)){
+      $Name = $data_edit['Name'];
+      $CountryCode = $data_edit['CountryCode'];
+      $District = $data_edit['District'];
+      $Population = $data_edit['Population'];
+    }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,19 +35,19 @@
     				<form action="action_update.php" method="POST">
     					<div class="form-group">
     						<label>Name</label>
-    						<input type="text" name="tName" value=<?php eco $vName;?> class="form-control" placeholder="Edit nama kotamu"required><br>
+    						<input type="text" name="tName" value="<?= $Name;?>" class="form-control" placeholder="Edit nama kotamu"required><br>
     					</div>	
     					<div class="form-group">
     						<label>CountryCode</label>
-    						<input type="text" name="tCountryCode" value=<?php eco $vCountryCode;?> class="form-control" placeholder="Edit kode negaramu"required><br>
+    						<input type="text" name="tCountryCode" value="<?=$CountryCode;?>" class="form-control" placeholder="Edit kode negaramu"required><br>
     					</div>
     					<div class="form-group">
     						<label>District</label>
-    						<input type="text" name="tDistrict" value=<?php eco $vDistrict;?> class="form-control" placeholder="Edit provinsimu"required><br>
+    						<input type="text" name="tDistrict" value="<?=$District;?>" class="form-control" placeholder="Edit provinsimu"required><br>
     					</div>	
     					<div class="form-group">
     						<label>Population</label>
-    						<input type="number" name="tPopulation" value=<?php eco $vPopulation;?> class="form-control" placeholder="Edit jumlah penduduk di daerahmu"required><br> <br>
+    						<input type="number" name="tPopulation" value="<?=$Population;?>"" class="form-control" placeholder="Edit jumlah penduduk di daerahmu"required><br> <br>
     					</div>	
     					<button type="submit" name="bsimpan" class="btn btn-success">Simpan</button>
     					<button type="reset" name="breset" class="btn btn-danger">Kosongkan</button>
